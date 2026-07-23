@@ -8,8 +8,8 @@ async def run():
         page = await context.new_page()
         
         try:
-            print("Checking TrollFootball...")
-            await page.goto("https://x.com/TrollFootball", timeout=30000)
+            print("Checking USArmy...")
+            await page.goto("https://x.com/USArmy", timeout=30000)
             await page.wait_for_selector("article", timeout=15000)
             await page.wait_for_timeout(3000)
             

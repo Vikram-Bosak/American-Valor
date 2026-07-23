@@ -10,12 +10,12 @@ from safety_filter import check_metadata_safety, evaluate_ai_safety_analysis
 class TestSafetySystem(unittest.TestCase):
     
     def test_clean_metadata(self):
-        result = check_metadata_safety("Beautiful Goal by Lionel Messi", "https://x.com/FIFAcom/status/123")
+        result = check_metadata_safety("Amazing F-35 Fighter Jet Flyover", "https://x.com/USArmy/status/123")
         self.assertTrue(result["is_safe"])
         self.assertEqual(result["action"], "allow")
         
     def test_blacklisted_keyword(self):
-        result = check_metadata_safety("Horrific leg injury in today's match", "https://x.com/SkyFootball/status/123")
+        result = check_metadata_safety("Horrific injury during training match", "https://x.com/USNavy/status/123")
         self.assertFalse(result["is_safe"])
         self.assertEqual(result["action"], "reject")
         self.assertIn("Blacklisted keyword detected", result["reasons"][0])

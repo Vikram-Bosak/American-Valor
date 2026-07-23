@@ -4,8 +4,8 @@ import re
 # Words indicating high risk of violations (injury, fights, non-football sensitive content, broadcasters)
 RISK_KEYWORDS = [
     "injury", "broken leg", "blood", "fight", "brawl", "clash", 
-    "attack", "hooligan", "police", "arrest", "protest", "death", 
-    "die", "killed", "war", "weapons", "gun", "disaster", "tragedy",
+    "police", "arrest", "protest", "death", 
+    "die", "killed", "disaster", "tragedy",
     "bein sports", "sky sports", "espn", "nbc sports", "canal+", "super sport"
 ]
 
