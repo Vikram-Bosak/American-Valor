@@ -2,6 +2,9 @@ import os
 import json
 import requests
 import shutil
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def send_discord_report(embed):
     webhook_url = os.environ.get('DISCORD_WEBHOOK_URL')
@@ -71,7 +74,7 @@ def main():
     tiktok_status = "Success" if "tiktok.com" in tiktok_url else "Failed / N/A"
     
     # GitHub Action Variables
-    repo = os.environ.get('GITHUB_REPOSITORY', 'Vikram-Bosak/Facebook-Viral-Hollywood-Reels')
+    repo = os.environ.get('GITHUB_REPOSITORY', 'Vikram-Bosak/American-Valor')
     run_id = os.environ.get('GITHUB_RUN_ID', 'UNKNOWN')
     repo_url = f"https://github.com/{repo}"
     run_url = f"{repo_url}/actions/runs/{run_id}"
