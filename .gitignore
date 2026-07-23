@@ -1,6 +1,7 @@
 .env
 token.json
 client_secret.json
+client_secrets.json
 fb_accounts.json
 venv/
 __pycache__/
