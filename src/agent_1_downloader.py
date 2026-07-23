@@ -33,22 +33,22 @@ def search_and_download_latest_video():
     
     # Updated profiles (16 total active profiles)
     profiles = [
-        "https://x.com/Waleedahmdd",
-        "https://x.com/FIFAWC26Updates",
-        "https://x.com/FIFAcom",
-        "https://x.com/SkyFootball",
-        "https://x.com/TheSunFootball",
-        "https://x.com/footballontnt",
-        "https://x.com/TrollFootball",
-        "https://x.com/Footballtweet",
-        "https://x.com/FBAwayDays",
-        "https://x.com/nocontextfooty",
-        "https://x.com/centregoals",
-        "https://x.com/PurelyFootball",
-        "https://x.com/TotalCristiano",
-        "https://x.com/StopThatMessi",
-        "https://x.com/FootyHumour",
-        "https://x.com/TimelineCR7"
+        "https://x.com/USArmy",
+        "https://x.com/USNavy",
+        "https://x.com/USMC",
+        "https://x.com/USAirForce",
+        "https://x.com/DeptofDefense",
+        "https://x.com/NationalGuard",
+        "https://x.com/USArmyReserve",
+        "https://x.com/US_SpaceForce",
+        "https://x.com/USCoastGuard",
+        "https://x.com/Centcom",
+        "https://x.com/USPacificFleet",
+        "https://x.com/PacificMarines",
+        "https://x.com/AirForceReserve",
+        "https://x.com/USArmyTRADOC",
+        "https://x.com/USArmyFORSCOM",
+        "https://x.com/USArmySMDC"
     ]
         
     # Clean profiles to just usernames if they are full URLs
@@ -173,7 +173,7 @@ def search_and_download_latest_video():
         
         print(f"Selected valid NEW video: {original_tweet_url}")
         
-        # Aspect Ratio Check (9:16 Filter) before downloading
+        # Log Aspect Ratio details
         try:
             print(f"Checking aspect ratio for {original_tweet_url}...")
             ydl_opts_meta = {
@@ -197,21 +197,12 @@ def search_and_download_latest_video():
             if width and height:
                 aspect_ratio = width / height
                 print(f"Metadata - Resolution: {width}x{height}, Aspect Ratio: {aspect_ratio:.4f}")
-                # 9:16 is exactly 0.5625. Allow 0.5 to 0.65.
-                # This correctly skips square (1.0), 4:5 (0.8), and horizontal (1.777) videos.
-                if not (0.5 <= aspect_ratio <= 0.65):
-                    print(f"Skipping {original_tweet_url} - Aspect ratio is not 9:16.")
-                    stats["videos_skipped"] += 1
-                    continue
-                print("Video aspect ratio matches 9:16 (Vertical). Proceeding to download.")
+                print("Proceeding to download. Layout will be formatted to 9:16 by the editor.")
             else:
-                print("Could not determine aspect ratio. Skipping video to be safe.")
-                stats["videos_skipped"] += 1
-                continue
+                print("Could not determine aspect ratio. Proceeding to download anyway.")
         except Exception as e:
             print(f"Error checking aspect ratio: {e}")
             stats["errors"].append(f"Aspect Ratio check error: {str(e)}")
-            continue
             
         # Use yt-dlp to download it
         try:
