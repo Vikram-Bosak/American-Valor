@@ -69,8 +69,8 @@ def search_and_download_latest_video():
         'quiet': False
     }
     
-    # 4 hours lookback to match 2-hour schedule
-    time_limit = datetime.now(timezone.utc) - timedelta(hours=4)
+    # 96 hours lookback to match 2-hour schedule (TEMPORARY FOR TEST RUN)
+    time_limit = datetime.now(timezone.utc) - timedelta(hours=96)
     print(f"Time limit is set to: {time_limit.isoformat()}")
     
     nitter_instances = [
