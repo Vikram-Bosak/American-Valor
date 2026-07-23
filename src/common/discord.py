@@ -55,7 +55,7 @@ def get_run_details() -> str:
 
 def report_download_start():
     embed = {
-        "title": "🟢 FIFA Download Started",
+        "title": "🟢 USA Military Download Started",
         "description": get_run_details(),
         "color": 3066993 # Greenish
     }
@@ -63,7 +63,7 @@ def report_download_start():
 
 def report_download_complete(source_url: str):
     embed = {
-        "title": "✅ FIFA Download Completed",
+        "title": "✅ USA Military Download Completed",
         "description": f"**Source:** {source_url}\n{get_run_details()}",
         "color": 3066993
     }
@@ -134,7 +134,7 @@ def report_final_summary(summary_data: dict, stats: dict = None):
     error_text = "\n".join([f"❌ {e}" for e in errors]) if errors else "None"
     
     run_id = os.environ.get("GITHUB_RUN_ID", "")
-    repo_name = os.environ.get("GITHUB_REPOSITORY", "Vikram-Bosak/Fifa_world_cup_agent_1")
+    repo_name = os.environ.get("GITHUB_REPOSITORY", "Vikram-Bosak/usa_military_army_agent_1")
     workflow_url = f"https://github.com/{repo_name}/actions/runs/{run_id}" if run_id else f"https://github.com/{repo_name}/actions"
     
     if not summary_data:
@@ -164,7 +164,7 @@ def report_final_summary(summary_data: dict, stats: dict = None):
     yt_status = "Success" if yt_url not in ["Failed", "N/A", "None", None] else f"Failed ({yt_err})"
     tiktok_status = "Success" if tiktok_url not in ["Failed", "N/A", "None", None] else f"Failed ({tiktok_err})"
     
-    title = str(summary_data.get('title', 'Automated FIFA World Cup Reel'))
+    title = str(summary_data.get('title', 'Automated USA Military Reel'))
     
     msg = (
         f"✅ **Upload Successfully Completed**\n\n"

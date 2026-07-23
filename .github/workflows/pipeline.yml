@@ -1,4 +1,4 @@
-name: FIFA World Cup Video Pipeline
+name: USA Military & Army Video Pipeline
 
 on:
   push:
@@ -11,12 +11,12 @@ on:
 
 jobs:
   run-pipeline:
-    name: End-to-End FIFA Pipeline
+    name: End-to-End USA Military Pipeline
     runs-on: ubuntu-latest
     permissions:
       contents: write
     concurrency:
-      group: fifa-pipeline
+      group: military-pipeline
       cancel-in-progress: false
 
     steps:
@@ -39,13 +39,13 @@ jobs:
           playwright install chromium
 
       - name: 🚀 Step 1 - Run Pipeline Orchestrator (main_agent.py)
-        id: main_agent
+          id: main_agent
         env:
           OPENAI_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
           NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL_MILITARY }}
           FB_ACCESS_TOKEN: ${{ secrets.FB_ACCESS_TOKEN }}
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
@@ -61,7 +61,7 @@ jobs:
       - name: 📢 Step 2 - Run Unified Reporter (agent_4_reporter.py)
         if: always()
         env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL_MILITARY }}
         run: |
           python src/agent_4_reporter.py
 

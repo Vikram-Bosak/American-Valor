@@ -87,7 +87,7 @@ def generate_ui_frame(output_path: str, source_name: str, headline: str, story: 
         
         # --- VIDEO CREDIT OVERLAY ---
         # Draw on the transparent area so it overlays on the video
-        credit_text = "Video Credit: FIFA World Cup™"
+        credit_text = "Video Credit: USA Military & Army"
         try:
             f_credit = ImageFont.truetype(font_bold, 35)
         except IOError:
@@ -126,7 +126,7 @@ def generate_ui_frame(output_path: str, source_name: str, headline: str, story: 
 if __name__ == "__main__":
     generate_ui_frame(
         "temp/test_ui_frame.png", 
-        "GLOBAL FOOTBALL NEWS", 
-        "HISTORIC MOMENT FOR SPANISH FOOTBALL! 🇪🇸", 
-        "The Espana national arrives to a massive crowd ahead of their crucial match! Can they go all the way? #España #Fifa #WorldCup #FootballNews"
+        "MILITARY NEWS & TRIBUTE", 
+        "MILITARY STRENGTH & PRECISION! 🇺🇸", 
+        "A closer look at military drills and tactical training showing the dedication of our troops! #Military #USArmy #USNavy"
     )

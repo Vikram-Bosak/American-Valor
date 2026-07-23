@@ -1,4 +1,4 @@
-name: FIFA World Cup Video Pipeline
+name: USA Military & Army Video Pipeline
 
 on:
   workflow_dispatch:
@@ -52,7 +52,7 @@ jobs:
       - name: Run Unified Reporter (agent_4_reporter.py)
         if: always()
         env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL_MILITARY }}
         run: |
           python src/agent_4_reporter.py
 

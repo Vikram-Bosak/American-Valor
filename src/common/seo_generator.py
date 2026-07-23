@@ -18,47 +18,41 @@ load_dotenv()
 # Trending Football/Soccer Keywords for SEO
 # ──────────────────────────────────────────────────────────────────────────────
 FOOTBALL_KEYWORDS = {
-    "players": [
-        "Lionel Messi", "Cristiano Ronaldo", "Kylian Mbappé", "Erling Haaland",
-        "Jude Bellingham", "Vinicius Jr", "Bukayo Saka", "Rodri",
-        "Federico Valverde", "Florian Wirtz", "Lamine Yamal", "Phil Foden",
-        "Ousmane Dembélé", "Neymar", "Kevin De Bruyne", "Marcus Rashford",
+    "branches": [
+        "US Army", "US Navy", "US Marine Corps", "USMC", "US Air Force", "US Coast Guard",
+        "Space Force", "National Guard", "Special Forces", "Navy SEALs", "Green Berets", "Army Rangers",
     ],
-    "teams": [
-        "Real Madrid", "FC Barcelona", "Manchester City", "Bayern Munich",
-        "Paris Saint-Germain", "Liverpool", "Arsenal", "Inter Milan",
-        "Atletico Madrid", "Napoli", "Borussia Dortmund", "Juventus",
+    "equipment": [
+        "F-35 Lightning", "M1 Abrams Tank", "A-10 Warthog", "Aircraft Carrier", "F-22 Raptor",
+        "Apache Helicopter", "Black Hawk", "Destroyer", "Submarine", "Humvee", "CH-47 Chinook",
     ],
-    "competitions": [
-        "FIFA World Cup", "UEFA Champions League", "Premier League",
-        "La Liga", "Serie A", "Bundesliga", "Ligue 1", "Copa America",
-        "UEFA Euro 2026", "Club World Cup", "AFCON", "FA Cup",
+    "topics": [
+        "military training", "tactical operations", "military drill", "basic training",
+        "air show", "naval exercises", "combat simulation", "paratrooper jump",
+        "weapons training", "military technology", "soldier tribute", "honor guard",
     ],
-    "football_terms": [
-        "football highlights", "soccer goals", "world class goal",
-        "skill move", "nutmeg", "free kick", "bicycle kick",
-        "solo goal", "team goal", "counter attack", "tiki taka",
-        "pressing", "tactical masterclass", "instant classic",
+    "military_terms": [
+        "military power", "operational readiness", "active duty", "special ops",
+        "tactical maneuver", "precision strike", "military exercise", "force protection",
+        "joint operations", "elite forces", "rapid deployment", "combat readiness",
     ],
     "emotional_hooks": [
-        "unbelievable", "insane", "world class", "must watch",
-        "viral football", "football magic", "pure class",
-        "this is why we love football", "goosebumps",
+        "incredible strength", "elite precision", "pure dedication", "inspiring tribute",
+        "unmatched power", "military pride", "service and sacrifice", "jaw-dropping power",
+        "patriotism", "heroic moments", "must watch military",
     ],
 }
 
 # ──────────────────────────────────────────────────────────────────────────────
-# Trending Football Hashtags
+# Trending Military Hashtags
 # ──────────────────────────────────────────────────────────────────────────────
 FOOTBALL_HASHTAGS = [
-    "#FIFAWorldCup", "#Football", "#Soccer", "#WorldCup2026",
-    "#ChampionsLeague", "#PremierLeague", "#LaLiga", "#FootballHighlights",
-    "#SoccerGoals", "#ViralFootball", "#FootballDaily", "#BeautifulGame",
-    "#MatchDay", "#FootballFans", "#TopBins", "#CleanSheet",
-    "#FootballMoments", "#SoccerViral", "#GoalOfTheSeason",
-    "#Messi", "#Ronaldo", "#Haaland", "#Mbappe",
-    "#RealMadrid", "#Barcelona", "#ManCity", "#Arsenal",
-    "#ElClasico", "#FootballEdit", "#FootballMemes", "#GOAT",
+    "#USArmy", "#USNavy", "#USMC", "#USAirForce", "#Military", "#Army",
+    "#Marines", "#NavySEALs", "#SpecialForces", "#Tactical", "#Aviation",
+    "#FighterJet", "#Navy", "#AirForce", "#Veterans", "#MilitaryLife",
+    "#USArmyReserve", "#NationalGuard", "#Patriot", "#USA", "#Soldiers",
+    "#MilitaryPower", "#EliteForces", "#CoastGuard", "#SpaceForce",
+    "#Tank", "#Helicopter", "#F35", "#Warthog", "#Raptor",
 ]
 
 
@@ -125,14 +119,14 @@ def analyze_video_for_editing(context: dict) -> dict:
         "short_headline": (
             original_title[:35] + "..."
             if len(original_title) > 35
-            else (original_title if original_title else "UNMISSABLE MOMENT ⚽🔥")
+            else (original_title if original_title else "ELITE MILITARY MOMENT 🇺🇸🦅")
         ),
         "story": (
             original_title
             if original_title
-            else "Did you just see that?! This is the kind of moment that makes football the greatest sport on Earth. Watch till the end! 😱"
+            else "An incredible look at the dedication, power, and precision of our armed forces. Watch till the end to see the full strength in action! 🇺🇸"
         ),
-        "overlay_text": "⚽ MUST-SEE FOOTBALL MOMENT",
+        "overlay_text": "🇺🇸 MUST-SEE MILITARY MOMENT",
         "safety_flags": [],
         "safety_actions": []
     }
@@ -152,12 +146,13 @@ def analyze_video_for_editing(context: dict) -> dict:
     # Build context snippet for trending keywords injection
     trending_snippet = (
         f"\nTrending keyword pools to weave in naturally: "
-        f"Players: {', '.join(FOOTBALL_KEYWORDS['players'][:6])}; "
-        f"Terms: {', '.join(FOOTBALL_KEYWORDS['football_terms'][:6])}; "
+        f"Branches: {', '.join(FOOTBALL_KEYWORDS['branches'][:6])}; "
+        f"Equipment: {', '.join(FOOTBALL_KEYWORDS['equipment'][:6])}; "
+        f"Terms: {', '.join(FOOTBALL_KEYWORDS['military_terms'][:6])}; "
         f"Hooks: {', '.join(FOOTBALL_KEYWORDS['emotional_hooks'][:5])}."
     )
 
-    prompt = f"""You are a world-class FIFA World Cup and global football social media strategist and content safety auditor.
+    prompt = f"""You are a world-class USA Military and Army social media strategist and content safety auditor.
 Analyze the video context and metadata carefully to ensure absolute compliance with Facebook's Community Standards and Copyright/Rights Manager policies.
 
 === SOURCE OF TRUTH ===
@@ -168,19 +163,19 @@ Source Profile: {context.get('source', 'Unknown')}
 
 === YOUR TASK ===
 Analyze the "Original Title/Text" and any visual context. Identify:
-1. Exact players, clubs, or tournaments.
-2. The emotional hook.
+1. Exact branches of military, equipment type, or operation/tribute.
+2. The emotional hook (e.g., patriotism, power, precision, dedication).
 3. The content safety risks:
-   - Does this show explicit physical violence, fights, or severe medical injuries?
-   - Is it a non-football meme containing sensitive geopolitical issues?
-   - Does it use commentator voice or official broadcaster footage (e.g. beIN Sports, Sky Sports) that might trigger Rights Manager?
+   - Does this show graphic real-world violence, injuries, or non-sanctioned active warfare casualties?
+   - Is it a non-military meme containing sensitive geopolitical issues?
+   - Does it use copy-protected audio or official network broadcaster footage that might trigger Rights Manager?
 
 Then generate:
 1. **short_headline** – 3-6 words max, ALL CAPS, punchy, in ENGLISH. Include 1 relevant emoji.
 2. **story** – A 2-3 sentence conversational paragraph hyping the video.
-3. **category** – "Highlight", "Skill Move", "Goal", "Save", "Drama", "News/Transfer", "Fun/Meme", "Documentary".
-4. **safety_flags** – List containing flags if present: "violence" (fights/blood/injuries), "sensitive_meme" (non-football topics), "copyright_audio" (heavy commentary), "broadcaster_watermark" (visible tv logos). Empty list if clean.
-5. **safety_actions** – Actions required to make the video safe: "mute_audio" (if audio risk), "flip_horizontal" (to avoid visual match), "trim_video" (if too long or ends in fight). Empty list if clean.
+3. **category** – "Training", "Operations", "Tribute", "Aviation", "Navy", "Vehicles/Tech", "Meme/Humor", "Documentary".
+4. **safety_flags** – List containing flags if present: "violence" (casualties/blood/severe injuries), "sensitive_meme" (non-military topics), "copyright_audio" (heavy commentary), "broadcaster_watermark" (visible tv logos). Empty list if clean.
+5. **safety_actions** – Actions required to make the video safe: "mute_audio" (if audio risk), "flip_horizontal" (to avoid visual match), "trim_video" (if too long or ends in unsafe content). Empty list if clean.
 
 Return ONLY a valid JSON object with these exact keys:
 {{
@@ -253,22 +248,22 @@ def generate_upload_metadata(context: dict) -> dict:
 
     # Build a compact keyword reference for the prompt
     sample_keywords = ', '.join(
-        FOOTBALL_KEYWORDS['players'][:4]
-        + FOOTBALL_KEYWORDS['teams'][:4]
-        + FOOTBALL_KEYWORDS['competitions'][:3]
+        FOOTBALL_KEYWORDS['branches'][:4]
+        + FOOTBALL_KEYWORDS['equipment'][:4]
+        + FOOTBALL_KEYWORDS['topics'][:3]
     )
     sample_hashtags = ' '.join(FOOTBALL_HASHTAGS[:15])
 
-    prompt = f"""You are a top-tier football/soccer social media SEO specialist. Generate platform-specific upload metadata for a viral football video.
+    prompt = f"""You are a top-tier USA Military and Army social media SEO specialist. Generate platform-specific upload metadata for a viral military video.
 
 === FULL VIDEO CONTEXT ===
 Original Title/Text: {title_clean}
 Source Profile: {context.get('source', 'Unknown')}
-Determined Category: {context.get('category', 'Highlight')}
+Determined Category: {context.get('category', 'Tribute')}
 Headline Used in Video: {headline_clean}
 Story Used in Video: {story_clean}
 
-=== TRENDING FOOTBALL REFERENCE DATA ===
+=== TRENDING MILITARY REFERENCE DATA ===
 Keyword pool (use naturally): {sample_keywords}
 Trending hashtag pool: {sample_hashtags}
 
@@ -277,38 +272,38 @@ Generate SEO metadata tailored for YouTube AND Facebook. Each platform has diffe
 
 **1. "title" (YouTube SEO Title)**
 • STRICTLY under 60 characters.
-• Include the most relevant player/team/competition name.
-• Use a power word (UNBELIEVABLE, INSANE, CLASS, GOAL, EPIC).
-• Example: "Mbappé's Insane Solo Goal ⚽ World Cup 2026"
+• Include the most relevant branch/equipment name.
+• Use a power word (UNBELIEVABLE, POWER, ELITE, PRIDE, HEROIC, EPIC).
+• Example: "US Navy SEALs Training 🇺🇸 Elite Precision"
 
 **2. "description" (YouTube Description)**
 • 2-3 sentences. First sentence must hook the viewer.
-• Naturally include 3-5 football keywords (player names, teams, competition).
-• End with a call to action (Like, Subscribe, Comment).
+• Naturally include 3-5 military keywords (branches, equipment, topic).
+• End with a call to action (Like, Subscribe, Comment with support).
 • Include relevant hashtags at the end.
 • DO NOT append or request any Source URLs. Keep it clean.
 
 **3. "facebook_caption" (Facebook Reels Caption)**
 • Short, punchy, MAX 2 sentences. Do NOT include hashtags here.
-• Must include a clear call-to-action (e.g., "Tag a football friend!", "Who did this better?", "Drop a ⚽ if you watched till the end").
+• Must include a clear call-to-action (e.g., "Drop a 🇺🇸 if you support our troops!", "Who did this better?", "Watch till the end!").
 • Conversational tone, like texting a friend.
 
 **4. "hashtags" (Facebook Hashtags – string)**
 • A single string of 7-8 highly relevant hashtags.
-• MUST include at least 2 player/team-specific hashtags from the context.
-• Mix broad (#Football, #Soccer) with specific (#PremierLeague, #ChampionsLeague).
-• Never use non-football hashtags.
+• MUST include at least 2 military-specific hashtags from the context.
+• Mix broad (#Military, #USA) with specific (#NavySEALs, #USArmy).
+• Never use non-military hashtags.
 
 **5. "tags" (YouTube Tags – list of strings)**
 • A list of 8-10 SEO tags for YouTube.
-• Include: player names (2-3), team names (1-2), competition names (1-2), generic football terms (2-3).
+• Include: branch names (2-3), equipment names (1-2), topic names (1-2), generic military terms (2-3).
 • Tags should be what fans would actually search on YouTube.
 
 === RULES ===
-• Everything must be strictly football/soccer. No entertainment, no general sports.
+• Everything must be strictly USA military/army/navy/airforce. No unrelated politics, no general news.
 • Write only in English.
-• Match the emotional tone of the video (epic goal → excited, controversy → dramatic, skill → amazed).
-• If you can identify the specific players/teams from the title, USE their exact names.
+• Match the emotional tone of the video (epic show → excited, tribute → proud/respectful, training → amazed).
+• If you can identify the specific branches/equipment from the title, USE their exact names.
 • Do NOT output any source URLs or Twitter usernames/handles.
 
 Return ONLY a valid JSON object with these exact keys:
@@ -359,29 +354,28 @@ def _get_fallback_metadata(context=None):
     if not context:
         context = {}
     
-    raw_title = context.get('title', 'Unbelievable Football Moment! ⚽🔥')
+    raw_title = context.get('title', 'Incredible USA Military Power! 🇺🇸🦅')
     original_title = clean_input_title(raw_title)
     if not original_title:
-        original_title = "Unbelievable Football Moment! ⚽🔥"
+        original_title = "Incredible USA Military Power! 🇺🇸🦅"
         
-    category = context.get('category', 'Highlight')
+    category = context.get('category', 'Tribute')
 
     # Smart truncation for YouTube title
     yt_title = original_title[:57] + "..." if len(original_title) > 57 else original_title
 
     # Build description with trending keywords
     kw = FOOTBALL_KEYWORDS
-    player_hint = ""
-    for p in kw["players"]:
-        if p.lower() in original_title.lower():
-            player_hint = f" featuring {p}"
+    branch_hint = ""
+    for b in kw["branches"]:
+        if b.lower() in original_title.lower():
+            branch_hint = f" featuring the {b}"
             break
 
     description = (
         f"{original_title}\n\n"
-        f"This is football at its finest! From the beautiful game to the biggest stages in the world, "
-        f"moments like these remind us why we love the sport.{player_hint}.\n"
-        f"👉 LIKE this video, SUBSCRIBE for daily football highlights, and COMMENT who your GOAT is! 🐐⚽"
+        f"An incredible demonstration of strength, coordination, and elite technology from our armed forces.{branch_hint}.\n"
+        f"👉 LIKE this video, SUBSCRIBE for daily military videos, and COMMENT to show your support! 🇺🇸🦅"
     )
 
     # Pick the most relevant hashtags from the trending list
@@ -389,29 +383,29 @@ def _get_fallback_metadata(context=None):
     specific_hashtags = []
     for ht in FOOTBALL_HASHTAGS:
         name = ht[1:].lower()  # strip #
-        if name in context_lower or any(name in p.lower() for p in kw["players"]) or any(name in t.lower() for t in kw["teams"]):
+        if name in context_lower or any(name in b.lower() for b in kw["branches"]) or any(name in e.lower() for e in kw["equipment"]):
             specific_hashtags.append(ht)
     # Always include broad ones
-    base_hashtags = ["#Football", "#Soccer", "#FootballHighlights", "#ViralFootball"]
+    base_hashtags = ["#Military", "#USA", "#Soldiers", "#MilitaryPower"]
     all_hashtags = list(dict.fromkeys(specific_hashtags + base_hashtags))[:8]
     hashtag_string = " ".join(all_hashtags)
 
     # Build tags
     tags = []
-    # Add matched players
-    for p in kw["players"]:
-        if p.lower() in context_lower:
-            tags.append(p)
-    # Add matched teams
-    for t in kw["teams"]:
+    # Add matched branches
+    for b in kw["branches"]:
+        if b.lower() in context_lower:
+            tags.append(b)
+    # Add matched equipment
+    for e in kw["equipment"]:
+        if e.lower() in context_lower:
+            tags.append(e)
+    # Add matched topics
+    for t in kw["topics"]:
         if t.lower() in context_lower:
             tags.append(t)
-    # Add matched competitions
-    for c in kw["competitions"]:
-        if c.lower() in context_lower:
-            tags.append(c)
-    # Fill with generic football tags
-    generic = ["Football", "Soccer", "Football Highlights", "World Cup", "GOAT", "Best Goals"]
+    # Fill with generic military tags
+    generic = ["Military", "Army", "Navy", "AirForce", "Marines", "Special Forces", "American Soldiers"]
     for g in generic:
         if len(tags) < 10 and g not in tags:
             tags.append(g)
@@ -422,7 +416,7 @@ def _get_fallback_metadata(context=None):
         "description": description,
         "facebook_caption": (
             f"{original_title}\n\n"
-            f"{'⚽ This is why football is the greatest sport on Earth!' if 'goal' in context_lower or 'highlight' in category.lower() else '🔥 Football never disappoints!'}"
+            f"{'🇺🇸 Show your support for our brave soldiers!' if 'tribute' in category.lower() else '🔥 An amazing showcase of military power!'}"
             f" Drop a comment and tag a friend who needs to see this! 👇"
         ),
         "hashtags": hashtag_string,

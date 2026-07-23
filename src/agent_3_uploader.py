@@ -53,16 +53,16 @@ def run_upload(video_data):
             context = video_data
             
         metadata = generate_upload_metadata(context)
-        fb_caption = f"{metadata.get('facebook_caption', headline)}\n\n{metadata.get('hashtags', '#FIFAWorldCup #Football')}"
+        fb_caption = f"{metadata.get('facebook_caption', headline)}\n\n{metadata.get('hashtags', '#USArmy #USNavy #Military')}"
         yt_title = metadata.get('title', title)
         yt_desc = metadata.get('description', '')
         yt_tags = metadata.get('tags', [])
     except Exception as e:
         logging.error(f"Error generating dynamic SEO metadata: {e}")
-        fb_caption = f"{headline}\n\n#FIFAWorldCup #Football #Soccer"
+        fb_caption = f"{headline}\n\n#USArmy #USNavy #Military"
         yt_title = title
         yt_desc = fb_caption
-        yt_tags = ["football", "soccer", "fifa", "highlights"]
+        yt_tags = ["military", "usarmy", "usnavy", "tactical", "elite"]
         
     video_data["description"] = fb_caption
 

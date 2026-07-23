@@ -31,14 +31,14 @@ def upload_to_youtube(video_path, title, description, tags=None):
     print("Initializing YouTube upload...")
     youtube = get_youtube_client()
     
-    tags = tags or ['football', 'viral', 'shorts', 'fifa']
+    tags = tags or ['military', 'viral', 'shorts', 'usarmy']
     
     body = {
         'snippet': {
             'title': title,
             'description': description,
             'tags': tags,
-            'categoryId': '17' # Sports Category
+            'categoryId': '22' # People & Blogs Category (suitable for Military Tributes/Clips)
         },
         'status': {
             'privacyStatus': 'public',
