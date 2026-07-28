@@ -2,11 +2,11 @@ import os
 import json
 from datetime import datetime
 
-LIMITS_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), "temp", "daily_limits.json")
+LIMITS_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "daily_limits.json")
 
-MAX_DOWNLOADS = 15
-MAX_EDITS = 15
-MAX_UPLOADS = 15
+MAX_DOWNLOADS = 12
+MAX_EDITS = 12
+MAX_UPLOADS = 12
 
 def _load_limits():
     today = datetime.utcnow().date().isoformat()
