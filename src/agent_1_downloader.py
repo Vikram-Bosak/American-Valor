@@ -220,6 +220,7 @@ def search_and_download_latest_video():
             with open("workspace/meta.json", "w") as f:
                 json.dump(meta, f)
                 
+            save_to_history(tweet_id)
             stats["videos_downloaded"] += 1
             return filename, clean_title, tweet_id, original_tweet_url, original_tweet_url, stats
             
