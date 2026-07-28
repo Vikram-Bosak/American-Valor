@@ -21,7 +21,7 @@ def save_to_history(video_id):
         f.write(f"{video_id}\n")
 
 def search_and_download_latest_video():
-    print("Searching Twitter (via Nitter RSS) for new videos posted in the last 3 hours...")
+    print("Searching Twitter (via Nitter RSS) for new videos posted in the last 24 hours...")
     
     stats = {
         "profiles_scanned": 0,
@@ -31,7 +31,7 @@ def search_and_download_latest_video():
         "errors": []
     }
     
-    # Updated profiles (16 total active profiles)
+    # Active profiles (removed USArmyTRADOC, USArmyFORSCOM, USArmySMDC - all 404 on Nitter)
     profiles = [
         "https://x.com/USArmy",
         "https://x.com/USNavy",
@@ -45,10 +45,7 @@ def search_and_download_latest_video():
         "https://x.com/Centcom",
         "https://x.com/USPacificFleet",
         "https://x.com/PacificMarines",
-        "https://x.com/AirForceReserve",
-        "https://x.com/USArmyTRADOC",
-        "https://x.com/USArmyFORSCOM",
-        "https://x.com/USArmySMDC"
+        "https://x.com/AirForceReserve"
     ]
         
     # Clean profiles to just usernames if they are full URLs
@@ -69,14 +66,13 @@ def search_and_download_latest_video():
         'quiet': False
     }
     
-    # 4 hours lookback to match 2-hour schedule
-    time_limit = datetime.now(timezone.utc) - timedelta(hours=4)
+    # 24 hours lookback to ensure we find videos across all timezones
+    time_limit = datetime.now(timezone.utc) - timedelta(hours=24)
     print(f"Time limit is set to: {time_limit.isoformat()}")
     
+    # Only nitter.net works reliably (privacydev.net dead, poast.org 403)
     nitter_instances = [
-        "https://nitter.net",
-        "https://nitter.privacydev.net",
-        "https://nitter.poast.org"
+        "https://nitter.net"
     ]
     
     valid_videos = []
@@ -96,7 +92,7 @@ def search_and_download_latest_video():
                     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
                 }
                 req = urllib.request.Request(url, headers=headers)
-                with urllib.request.urlopen(req, timeout=15) as response:
+                with urllib.request.urlopen(req, timeout=30) as response:
                     xml_data = response.read()
                     root = ET.fromstring(xml_data)
                     items = root.findall('.//item')
@@ -141,7 +137,7 @@ def search_and_download_latest_video():
                 
             if post_time < time_limit:
                 # Since RSS is chronological, if we hit an old one, we can stop checking this profile.
-                print(f"Post {tweet_id} is older than 3 hours. Moving to next profile.")
+                print(f"Post {tweet_id} is older than 24 hours. Moving to next profile.")
                 break
                 
             # It is a recent video
@@ -161,7 +157,7 @@ def search_and_download_latest_video():
             
     print("--------------------------------------------------")
     if not valid_videos:
-        print("No new valid videos found across all profiles within the last 3 hours.")
+        print("No new valid videos found across all profiles within the last 24 hours.")
         return None, None, None, None, None, stats
         
     # Sort valid videos by post_time (oldest first) to ensure chronological uploading
