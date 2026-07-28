@@ -49,13 +49,13 @@ def generate_ui_frame(output_path: str, source_name: str, headline: str, story: 
         f_name = f_handle = ImageFont.load_default()
 
     # Draw Page Name
-    draw.text((170, 35), "Financial Edge Daily", fill=(0, 0, 0, 255), font=f_name)
+    draw.text((170, 35), "American Valor", fill=(0, 0, 0, 255), font=f_name)
     
     # Draw Verified Badge
     try:
-        name_w = int(draw.textlength("Financial Edge Daily", font=f_name))
+        name_w = int(draw.textlength("American Valor", font=f_name))
     except AttributeError:
-        bbox = draw.textbbox((0, 0), "Financial Edge Daily", font=f_name)
+                    bbox = draw.textbbox((0, 0), "American Valor", font=f_name)
         name_w = bbox[2] - bbox[0]
         
     badge_x = 170 + name_w + 12
@@ -65,7 +65,7 @@ def generate_ui_frame(output_path: str, source_name: str, headline: str, story: 
     draw.line([badge_x + 13, badge_y + 18, badge_x + 20, badge_y + 9], fill=(255, 255, 255, 255), width=3)
 
     # Draw Handle
-    draw.text((170, 85), "@FinancialEdgeDaily", fill=(100, 110, 120, 255), font=f_handle)
+    draw.text((170, 85), "@AmericanValorTV", fill=(100, 110, 120, 255), font=f_handle)
         
     def draw_all(renderer, is_pilmoji):
         # --- Wrapped Details/Description (Drawn inside the Top Area, just above the video) ---
