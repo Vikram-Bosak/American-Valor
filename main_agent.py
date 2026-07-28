@@ -99,7 +99,7 @@ def run_single_sequence():
         subprocess.run("git config --global user.name 'github-actions[bot]'", shell=True)
         subprocess.run("git config --global user.email 'github-actions[bot]@users.noreply.github.com'", shell=True)
         subprocess.run("git add downloaded_history.txt", shell=True, check=True)
-        subprocess.run("git commit -m 'Update history (mid-run)'", shell=True, check=True)
+        subprocess.run("git commit -m 'Update history (mid-run) [skip ci]'", shell=True, check=True)
         subprocess.run("git pull origin main --rebase --strategy-option=ours", shell=True, check=True)
         subprocess.run("git push origin HEAD:main", shell=True, check=True)
         print("History pushed successfully.")

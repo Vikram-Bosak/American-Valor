@@ -7,7 +7,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from editor.advanced_editor import process_video_dynamically
 
 def process_video(video_data):
-    print("Starting Agent 2: Video Editor (FIFA Style)")
+    print("Starting Agent 2: Video Editor (Military Style)")
     
     raw_video_path = video_data.get('local_path', "workspace/raw_video.mp4")
     title = video_data.get('title', 'Unknown Video')
@@ -21,7 +21,7 @@ def process_video(video_data):
     print(f"Processing video: {title}")
     
     try:
-        # Use FIFA's specific editing logic
+        # Use Military-specific editing logic
         edited_path, hook_line = process_video_dynamically(
             raw_video_path, 
             'assets/custom_logo.png', 

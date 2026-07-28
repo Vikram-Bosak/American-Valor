@@ -15,9 +15,9 @@ except ImportError:
 load_dotenv()
 
 # ──────────────────────────────────────────────────────────────────────────────
-# Trending Football/Soccer Keywords for SEO
+# Trending Military Keywords for SEO
 # ──────────────────────────────────────────────────────────────────────────────
-FOOTBALL_KEYWORDS = {
+MILITARY_KEYWORDS = {
     "branches": [
         "US Army", "US Navy", "US Marine Corps", "USMC", "US Air Force", "US Coast Guard",
         "Space Force", "National Guard", "Special Forces", "Navy SEALs", "Green Berets", "Army Rangers",
@@ -46,7 +46,7 @@ FOOTBALL_KEYWORDS = {
 # ──────────────────────────────────────────────────────────────────────────────
 # Trending Military Hashtags
 # ──────────────────────────────────────────────────────────────────────────────
-FOOTBALL_HASHTAGS = [
+MILITARY_HASHTAGS = [
     "#USArmy", "#USNavy", "#USMC", "#USAirForce", "#Military", "#Army",
     "#Marines", "#NavySEALs", "#SpecialForces", "#Tactical", "#Aviation",
     "#FighterJet", "#Navy", "#AirForce", "#Veterans", "#MilitaryLife",
@@ -88,7 +88,7 @@ def _extract_gemini_video_context(video_path: str) -> str:
             print("Gemini Video processing failed.")
             return ""
             
-        prompt = "Analyze this video completely. 1) Describe exactly what is happening visually. 2) If it is a meme, edit, or specific historical event (e.g., a war edit masked as a football video), explicitly state what the true hidden subject is. 3) Read any on-screen text (OCR). 4) Transcribe any spoken words. Be extremely accurate."
+        prompt = "Analyze this video completely. 1) Describe exactly what is happening visually. 2) If it is a meme, edit, or specific historical event (e.g., a war edit masked as a military video), explicitly state what the true hidden subject is. 3) Read any on-screen text (OCR). 4) Transcribe any spoken words. Be extremely accurate."
         
         response = client.models.generate_content(
             model='gemini-2.5-flash',
@@ -146,10 +146,10 @@ def analyze_video_for_editing(context: dict) -> dict:
     # Build context snippet for trending keywords injection
     trending_snippet = (
         f"\nTrending keyword pools to weave in naturally: "
-        f"Branches: {', '.join(FOOTBALL_KEYWORDS['branches'][:6])}; "
-        f"Equipment: {', '.join(FOOTBALL_KEYWORDS['equipment'][:6])}; "
-        f"Terms: {', '.join(FOOTBALL_KEYWORDS['military_terms'][:6])}; "
-        f"Hooks: {', '.join(FOOTBALL_KEYWORDS['emotional_hooks'][:5])}."
+        f"Branches: {', '.join(MILITARY_KEYWORDS['branches'][:6])}; "
+        f"Equipment: {', '.join(MILITARY_KEYWORDS['equipment'][:6])}; "
+        f"Terms: {', '.join(MILITARY_KEYWORDS['military_terms'][:6])}; "
+        f"Hooks: {', '.join(MILITARY_KEYWORDS['emotional_hooks'][:5])}."
     )
 
     prompt = f"""You are a world-class USA Military and Army social media strategist and content safety auditor.
@@ -223,7 +223,7 @@ def clean_input_title(title: str) -> str:
     title = re.sub(r'https?://\S+', '', title)
     # Remove Twitter handles (e.g. .@username or @username)
     title = re.sub(r'\.?@\w+', '', title)
-    # Remove hashtag terms (e.g. #Football)
+    # Remove hashtag terms (e.g. #USArmy)
     title = re.sub(r'#\w+', '', title)
     # Replace hyphens/underscores with spaces
     title = re.sub(r'[-_]', ' ', title)
@@ -248,11 +248,11 @@ def generate_upload_metadata(context: dict) -> dict:
 
     # Build a compact keyword reference for the prompt
     sample_keywords = ', '.join(
-        FOOTBALL_KEYWORDS['branches'][:4]
-        + FOOTBALL_KEYWORDS['equipment'][:4]
-        + FOOTBALL_KEYWORDS['topics'][:3]
+        MILITARY_KEYWORDS['branches'][:4]
+        + MILITARY_KEYWORDS['equipment'][:4]
+        + MILITARY_KEYWORDS['topics'][:3]
     )
-    sample_hashtags = ' '.join(FOOTBALL_HASHTAGS[:15])
+    sample_hashtags = ' '.join(MILITARY_HASHTAGS[:15])
 
     prompt = f"""You are a top-tier USA Military and Army social media SEO specialist. Generate platform-specific upload metadata for a viral military video.
 
@@ -348,7 +348,7 @@ Return ONLY a valid JSON object with these exact keys:
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# Football-specific fallbacks
+# Military-specific fallbacks
 # ──────────────────────────────────────────────────────────────────────────────
 def _get_fallback_metadata(context=None):
     if not context:
@@ -365,7 +365,7 @@ def _get_fallback_metadata(context=None):
     yt_title = original_title[:57] + "..." if len(original_title) > 57 else original_title
 
     # Build description with trending keywords
-    kw = FOOTBALL_KEYWORDS
+    kw = MILITARY_KEYWORDS
     branch_hint = ""
     for b in kw["branches"]:
         if b.lower() in original_title.lower():
@@ -381,7 +381,7 @@ def _get_fallback_metadata(context=None):
     # Pick the most relevant hashtags from the trending list
     context_lower = original_title.lower()
     specific_hashtags = []
-    for ht in FOOTBALL_HASHTAGS:
+    for ht in MILITARY_HASHTAGS:
         name = ht[1:].lower()  # strip #
         if name in context_lower or any(name in b.lower() for b in kw["branches"]) or any(name in e.lower() for e in kw["equipment"]):
             specific_hashtags.append(ht)
@@ -429,9 +429,9 @@ def _get_fallback_metadata(context=None):
 # ──────────────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     dummy_context = {
-        "title": "Messi Scores Stunning Free Kick against France .@StopThatMessi https://t.co/xyz",
-        "source": "FIFA World Cup",
-        "source_url": "https://x.com/FIFAWorldCup/status/1234567890"
+        "title": "US Navy SEALs incredible training exercise .@USNavy https://t.co/xyz",
+        "source": "USNavy",
+        "source_url": "https://x.com/USNavy/status/1234567890"
     }
     analysis = analyze_video_for_editing(dummy_context)
     print("Editing Analysis:")

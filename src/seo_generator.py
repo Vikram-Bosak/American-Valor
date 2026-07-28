@@ -8,9 +8,9 @@ except ImportError:
     from logger import logger
 
 # ──────────────────────────────────────────────────────────────────────────────
-# Trending Football/Soccer Keywords and Hashtags
+# Trending Military Keywords and Hashtags
 # ──────────────────────────────────────────────────────────────────────────────
-FOOTBALL_KEYWORDS = {
+MILITARY_KEYWORDS = {
     "branches": [
         "US Army", "US Navy", "US Marine Corps", "USMC", "US Air Force", "US Coast Guard",
         "Space Force", "National Guard", "Special Forces", "Navy SEALs", "Green Berets", "Army Rangers",
@@ -24,7 +24,7 @@ FOOTBALL_KEYWORDS = {
     ],
 }
 
-FOOTBALL_HASHTAGS = [
+MILITARY_HASHTAGS = [
     "#USArmy", "#USNavy", "#USMC", "#USAirForce", "#Military", "#Army",
     "#Marines", "#NavySEALs", "#SpecialForces", "#Tactical", "#Aviation",
     "#FighterJet", "#Navy", "#AirForce", "#Veterans", "#MilitaryLife",
@@ -162,7 +162,7 @@ def generate_fallback_metadata(filename):
     hash_tags_set = {'#military', '#usarmy', '#usnavy', '#reels'}
     
     # Add matches from trending keywords to specific hashtags
-    kw = FOOTBALL_KEYWORDS
+    kw = MILITARY_KEYWORDS
     context_lower = topic.lower()
     for b in kw["branches"]:
         if b.lower() in context_lower:
@@ -182,7 +182,7 @@ def generate_fallback_metadata(filename):
             
     final_tags = ordered_tags[:8]
     hashtags_str = " ".join([t.title() for t in final_tags])
-    # Capitalize tags properly (e.g. #Football, #Soccer)
+    # Capitalize tags properly (e.g. #USArmy, #NavySEALs)
     hashtags_str = re.sub(r'#([a-z])', lambda m: '#' + m.group(1).upper(), hashtags_str)
     
     return {

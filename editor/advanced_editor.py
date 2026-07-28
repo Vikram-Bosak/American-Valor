@@ -119,7 +119,7 @@ def process_video_dynamically(input_path: str, logo_path: str, output_path: str,
     
     message_text = (
         f"🎬 **EDITING REPORT**\n\n"
-        f"**Workflow Name:** FIFA Auto Pipeline\n"
+        f"**Workflow Name:** American Valor Pipeline\n"
         f"**Edit Start Time:** {edit_start_time.strftime('%Y-%m-%d %H:%M UTC')}\n"
         f"**Edit Complete Time:** {edit_complete_time.strftime('%Y-%m-%d %H:%M UTC')}\n"
         f"**File Name:** {file_name}\n"
@@ -137,5 +137,5 @@ def process_video_dynamically(input_path: str, logo_path: str, output_path: str,
     return output_path, headline
 
 if __name__ == "__main__":
-    dummy_task = {"id": "test_123", "title": "Crazy test video", "source": "FIFA World Cup"}
+    dummy_task = {"id": "test_123", "title": "US Army Paratrooper Jump", "source": "USArmy"}
     process_video_dynamically("assets/vertical_dummy.mp4", "assets/custom_logo.png", "temp/dynamic_edit.mp4", dummy_task)
