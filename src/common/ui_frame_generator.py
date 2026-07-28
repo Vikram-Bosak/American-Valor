@@ -55,7 +55,7 @@ def generate_ui_frame(output_path: str, source_name: str, headline: str, story: 
     try:
         name_w = int(draw.textlength("American Valor", font=f_name))
     except AttributeError:
-                    bbox = draw.textbbox((0, 0), "American Valor", font=f_name)
+        bbox = draw.textbbox((0, 0), "American Valor", font=f_name)
         name_w = bbox[2] - bbox[0]
         
     badge_x = 170 + name_w + 12
